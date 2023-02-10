@@ -11,7 +11,7 @@ import {
   Tag,
   TagLabel,
 } from '@chakra-ui/react';
-import useDevices from '../../../hooks/useDevicesHook';
+import useDevices from '../../../hooks/useDevices';
 import { createAvatar } from '@dicebear/core';
 import { botttsNeutral } from '@dicebear/collection';
 import { useEffect } from 'react';

@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from '../themes';
 
 export const GlobalStyle = createGlobalStyle`
-  html {
+  /* html {
     box-sizing: border-box;
   }
   *, *:before, *:after {
     box-sizing: inherit;
-  }
+  } */
 
   ::-webkit-scrollbar {
     width: 8px;             
@@ -19,7 +19,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color:  ${theme.colors.brand.tertiary};   
+    /* background-color:  ${theme.colors.brand.tertiary};    */
+    background-color: red;
     border-radius: 16px;      
   }
 

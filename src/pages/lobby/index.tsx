@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import TagUser from '../../components/organisms/tagUser';
-import useDevices from '../../hooks/useDevicesHook';
+import useDevices from '../../hooks/useDevices';
 import { MdOutlineCopyAll } from 'react-icons/md';
 import { uniqueNamesGenerator, names } from 'unique-names-generator';
 

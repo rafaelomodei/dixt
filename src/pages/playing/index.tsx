@@ -13,51 +13,43 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import Card from '../../components/organisms/card';
 import PopoverMount from '../../components/organisms/popoverMount';
-import useDevices from '../../hooks/useDevicesHook';
+import useDevices from '../../hooks/useDevices';
 import { BiHelpCircle } from 'react-icons/bi';
 
 import MainCard from '../../components/organisms/mainCard';
+import useStyledCard from '../../hooks/useStyledCard';
+
+const cardsMOCK: Array<string> = [
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+  'https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1',
+  'https://www.pcworld.com/wp-content/uploads/2022/09/mhachman_a_castle_on_an_asteroid_floating_through_space_2315526d-252b-40df-9a6d-eeb00aed612f.png?resize=1024%2C1024&quality=50&strip=all',
+  'https://b2868580.smushcdn.com/2868580/wp-content/uploads/2022/12/Midjourney-Bot-Commands.png?lossy=0&strip=1&webp=1',
+];
 
 const Playing = () => {
   const { isDesktop, isMobile } = useDevices();
   const [phrase, setPhrase] = useState<string>('');
-  const [selectedCard, setSelectedCard] = useState<boolean>(false);
+  const [imgCardSelected, setImgSelectedCard] = useState<string>('');
 
-  const { onOpen, onClose, isOpen } = useDisclosure();
-
-  useEffect(() => {
-    // onOpen();
-  }, []);
+  // const selectedCard = useRef<HTMLDivElement | null>(null);
+  const { selectedCard, setSelectedCard } = useStyledCard();
 
   const handlePhraseInput = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPhrase(e.target.value);
-
-  // const handleRenderHeaderPopover = () => (
-  //   <Flex alignItems='center'>
-  //     <BiHelpCircle size={20} />
-  //     <Heading size='xs' ml={2}>
-  //       Ajuda
-  //     </Heading>
-  //   </Flex>
-  // );
-
-  // const handleRenderBodyPopover = () => (
-  //   <Flex>
-  //     <Text>
-  //       Caso tenha escrito a frase e selecionado a carta desejada, clique na
-  //       carta central para finalizar sua jogada e passar a vez para o próximo
-  //       jogador!
-  //     </Text>
-  //   </Flex>
-  // );
-
-  // const handleRenderFooterPopover = () => (
-  //   <Flex justifyContent='flex-end'>
-  //     <Button onClick={onClose} autoFocus tabIndex={1} colorScheme='whatsapp'>
-  //       Ok
-  //     </Button>
-  //   </Flex>
-  // );
 
   return (
     <>
@@ -90,7 +82,6 @@ const Playing = () => {
               flexDirection='column'
             >
               <Center>
-                {/* {!isMobile && <Box w='85px' bg='green' />} */}
                 <Input
                   type='text'
                   placeholder='Digite a sua frase'
@@ -102,7 +93,6 @@ const Playing = () => {
                   autoFocus
                   w='md'
                 />
-                {/* {!isMobile && handleShowButtonFinished()} */}
               </Center>
               <FormErrorMessage
                 justifyContent='center'
@@ -112,16 +102,12 @@ const Playing = () => {
                 Escreva uma palavra ou frase que tenha pelomenos 3 caráter
               </FormErrorMessage>
             </FormControl>
-            <MainCard
-              userName='Carta selecionada'
-              isSelected
-              imgSelected='https://www.howtogeek.com/wp-content/uploads/2022/08/MidJourney-wizard-hall.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1'
-            />
+            <MainCard imgSelected={imgCardSelected} />
             <Button
-              // isDisabled={Boolean(phrase.length < 3) || !selectedCard}
+              isDisabled={Boolean(phrase.length < 3) || !selectedCard}
               colorScheme={
                 Boolean(phrase.length < 3) || !selectedCard
-                  ? 'whatsapp'
+                  ? 'gray'
                   : 'whatsapp'
               }
               w={isMobile ? '100%' : '160px'}
@@ -133,12 +119,15 @@ const Playing = () => {
               Pronto!
             </Button>
           </Box>
-          <Flex mt={8} flexDirection='column'>
-            <Flex>
-              <Card userName='Carta 1' />
-              <Card userName='Carta 2' />
-              <Card userName='Carta 3' />
-            </Flex>
+          <Flex mt={8} overflow='scroll'>
+            {cardsMOCK.map((card, index) => (
+              <Card
+                key={index}
+                img={card}
+                getRefCard={setSelectedCard}
+                getImage={setImgSelectedCard}
+              />
+            ))}
           </Flex>
         </Center>
       </Flex>

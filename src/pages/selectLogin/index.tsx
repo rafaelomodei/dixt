@@ -8,7 +8,7 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import useDevices from '../../hooks/useDevicesHook';
+import useDevices from '../../hooks/useDevices';
 
 const SelectLogin = () => {
   const { isDesktop } = useDevices();

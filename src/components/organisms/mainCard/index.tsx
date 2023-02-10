@@ -7,29 +7,23 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
-import useDevices from '../../../hooks/useDevicesHook';
+import useDevices from '../../../hooks/useDevices';
 import { GiCardRandom } from 'react-icons/gi';
 import { RiSendPlaneFill } from 'react-icons/ri';
 
 import { useState } from 'react';
 
 interface ILetter {
-  userName?: string;
-  isSelected?: boolean;
   imgSelected?: string;
 }
 
-const MainCard = ({ userName, isSelected = false, imgSelected }: ILetter) => {
-  const { isDesktop } = useDevices();
-
-  const [isActive, setIsActive] = useState(Boolean(imgSelected));
-
+const MainCard = ({ imgSelected }: ILetter) => {
   return (
     <Card
       m={2}
       variant='outline'
-      w={isSelected ? '160px' : '96px'}
-      h={isSelected ? '208px' : '128px'}
+      w='160px'
+      h='208px'
       backgroundImage={imgSelected}
       backgroundRepeat='no-repeat'
       backgroundSize='cover'
@@ -41,7 +35,7 @@ const MainCard = ({ userName, isSelected = false, imgSelected }: ILetter) => {
         alignItems='center'
         justifyContent='center'
       >
-        {!isActive && (
+        {!imgSelected && (
           <>
             <GiCardRandom size={64} />
             <Text textAlign='center' mt={2}>

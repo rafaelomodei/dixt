@@ -9,7 +9,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import useDevices from '../../hooks/useDevicesHook';
+import useDevices from '../../hooks/useDevices';
 
 const JoinRom = () => {
   const { isDesktop } = useDevices();

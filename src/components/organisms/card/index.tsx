@@ -1,20 +1,37 @@
-import { Button } from '@chakra-ui/react';
+import { Card as CardChakra, CardBody, useCardStyles } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'react';
 
-interface ILetter {
-  userName?: string;
+interface ICard {
+  img: string;
+  getRefCard: React.Dispatch<
+    React.SetStateAction<React.MutableRefObject<HTMLDivElement | null> | null>
+  >;
+  getImage: React.Dispatch<React.SetStateAction<string>>;
   isSelected?: boolean;
 }
 
-const Card = ({ userName, isSelected = false }: ILetter) => {
+const Card = ({ img, getRefCard, getImage, isSelected = false }: ICard) => {
+  const refCard = useRef<HTMLDivElement | null>(null);
+  const [selected, setSelected] = useState<boolean>(false);
+
   return (
-    <Button
+    <CardChakra
+      ref={refCard}
       m={2}
       variant='outline'
-      w={isSelected ? '160px' : '96px'}
-      h={isSelected ? '208px' : '128px'}
-    >
-      {userName}
-    </Button>
+      w='96px'
+      h='128px'
+      backgroundImage={img}
+      backgroundRepeat='no-repeat'
+      backgroundSize='cover'
+      backgroundPosition='center'
+      border={selected ? '2px solid red' : ''}
+      role='presentation'
+      onClick={() => {
+        getImage(img);
+        getRefCard(refCard);
+      }}
+    />
   );
 };
 

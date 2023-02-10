@@ -8,7 +8,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import useDevices from '../../hooks/useDevicesHook';
+import useDevices from '../../hooks/useDevices';
 
 const CreateRom = () => {
   const { isDesktop } = useDevices();
