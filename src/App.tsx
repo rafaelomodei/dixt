@@ -5,9 +5,10 @@ import SelectLogin from './pages/selectLogin';
 import CreateRom from './pages/createRom';
 import JoinRom from './pages/joinRom';
 import Lobby from './pages/lobby';
+import Playing from './pages/playing';
 
 const App = () => {
-  return <Lobby />;
+  return <Playing />;
 };
 
 export default App;

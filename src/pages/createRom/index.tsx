@@ -6,7 +6,6 @@ import {
   Flex,
   Heading,
   Text,
-  useRadioGroup,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import useDevices from '../../hooks/useDevicesHook';

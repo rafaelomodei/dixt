@@ -1,7 +1,6 @@
 import { Center, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 import useDevices from '../../hooks/useDevicesHook';
-import { isValidEmail } from '../../utils/helpers/login';
 import EmailField from './email';
 import PasswordField from './password';
 import UserField from './user';

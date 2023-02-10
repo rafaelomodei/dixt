@@ -7,7 +7,6 @@ import {
   FormErrorMessage,
   Heading,
   Input,
-  Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import useDevices from '../../hooks/useDevicesHook';
@@ -51,7 +50,7 @@ const JoinRom = () => {
               textAlign='center'
               autoFocus
             />
-            <FormErrorMessage justifyContent='center' fontWeight='bold'>
+            <FormErrorMessage justifyContent='center' fontWeight='bold' textAlign='center'>
               Essa sala não existe!
             </FormErrorMessage>
           </FormControl>
