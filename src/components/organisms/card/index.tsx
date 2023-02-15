@@ -1,4 +1,9 @@
-import { Card as CardChakra, CardBody, useCardStyles } from '@chakra-ui/react';
+import {
+  Box,
+  Card as CardChakra,
+  CardBody,
+  useCardStyles,
+} from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 
 interface ICard {
@@ -17,7 +22,6 @@ const Card = ({ img, getRefCard, getImage, isSelected = false }: ICard) => {
   return (
     <CardChakra
       ref={refCard}
-      m={2}
       variant='outline'
       w='96px'
       h='128px'
@@ -26,7 +30,8 @@ const Card = ({ img, getRefCard, getImage, isSelected = false }: ICard) => {
       backgroundSize='cover'
       backgroundPosition='center'
       border={selected ? '2px solid red' : ''}
-      role='presentation'
+      // role='presentation'
+      display='inline-block'
       onClick={() => {
         getImage(img);
         getRefCard(refCard);

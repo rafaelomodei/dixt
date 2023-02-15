@@ -11,17 +11,19 @@ export const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar {
     width: 8px;             
+    height: 8px;
+
   }
 
   ::-webkit-scrollbar-track {
     background: transparent;        
     border-radius: 16px;
+
   }
 
   ::-webkit-scrollbar-thumb {
-    /* background-color:  ${theme.colors.brand.tertiary};    */
-    background-color: red;
-    border-radius: 16px;      
+    background-color:  ${theme.colors.brand.tertiary};   
+    border-radius: 16px;
   }
 
 `;
