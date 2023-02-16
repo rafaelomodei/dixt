@@ -1,28 +1,15 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Center,
-  Heading,
-  Img,
-  Tag,
-  TagLabel,
-} from '@chakra-ui/react';
-import useDevices from '../../../hooks/useDevices';
+import { Avatar, Box, Tag, TagLabel } from '@chakra-ui/react';
 import { createAvatar } from '@dicebear/core';
 import { botttsNeutral } from '@dicebear/collection';
-import { useEffect } from 'react';
+import { GiCardPickup, GiCardJoker } from 'react-icons/gi';
 
 interface ILetter {
   userName?: string;
+  isPlaying?: boolean;
+  hasCardSelected?: boolean;
 }
 
-const TagUser = ({ userName }: ILetter) => {
-  const { isDesktop } = useDevices();
-
+const TagUser = ({ userName, isPlaying = false, hasCardSelected }: ILetter) => {
   const seed: string[] = [
     'Midnight',
     'Muffin',
@@ -50,11 +37,24 @@ const TagUser = ({ userName }: ILetter) => {
   });
 
   const avatarUri = avatar.toDataUriSync();
-
+  const isPlayingAndHasCardSelected = isPlaying && hasCardSelected;
   return (
-    <Tag size='lg' colorScheme='whatsapp' borderRadius='full' p={2} m={2}>
+    <Tag
+      size='lg'
+      colorScheme={isPlayingAndHasCardSelected ? 'whatsapp' : 'gray'}
+      borderRadius='full'
+      p={2}
+      m={2}
+    >
       <Avatar src={avatarUri} name='Aegun Adebayo' size='xs' />
       <TagLabel ml={2}>{userName}</TagLabel>
+      <Box ml={2} mr={1}>
+        {isPlayingAndHasCardSelected ? (
+          <GiCardJoker size={24} />
+        ) : (
+          <GiCardPickup size={24} />
+        )}
+      </Box>
     </Tag>
   );
 };
